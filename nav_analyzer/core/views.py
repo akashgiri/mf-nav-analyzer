@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 def home(request):
     #if request.user.is_authenticated():
-    return render(request, "core/cover.html")
+    return render(request, "core/welcome.html")

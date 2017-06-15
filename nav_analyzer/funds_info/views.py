@@ -4,7 +4,6 @@ from .models import Fund, Stock
 # Create your views here.
 def show_funds_list(request):
     funds_data = {}
-    #funds_data["funds_list"] = 
 
     distinct_funds = Fund.objects.order_by().values_list('fund_name').distinct()
     funds_list = []

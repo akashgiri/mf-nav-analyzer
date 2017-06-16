@@ -20,7 +20,7 @@
     <div class="login">
       <h3>Welcome to Mutual Fund NAV analyzer. Select a fund name whose change in NAV you want to see.</h3>
       {% for fund in funds_data.funds_list %}
-          <a href="#">{{ fund }}</a>
+          <a href="{% url 'funds_info:show_all_stocks' fund.slug %}">{{ fund.fund }}</a><br>
       {% endfor %}
     </div>
   </div>

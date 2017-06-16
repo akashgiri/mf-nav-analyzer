@@ -1,0 +1,8 @@
+body {
+    background-color: #ffffff;
+}
+#expected-wrapper {
+    display: block;
+    text-align: center;
+    padding-bottom: 20px;
+}

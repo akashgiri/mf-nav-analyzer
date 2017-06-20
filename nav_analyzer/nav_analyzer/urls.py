@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.views.generic import RedirectView
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -21,13 +22,6 @@ from core import views as core_views
 from authentication import views as nav_analyzer_auth_views
 
 urlpatterns = [
-    url(r'^$', core_views.home, name="home"),
+    url(r'^$', RedirectView.as_view(url = '/funds/')),
     url(r'^funds/', include('funds_info.urls')),
 ]
-
-"""
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^admin/', admin.site.urls),
-]
-"""

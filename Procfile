@@ -1,0 +1,1 @@
+web: gunicorn nav_analyzer.wsgi --log-file -

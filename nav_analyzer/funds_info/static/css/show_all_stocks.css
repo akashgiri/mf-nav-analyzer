@@ -1,6 +1,3 @@
-body {
-    background-color: #ffffff;
-}
 #expected-wrapper {
     /*display: block;*/
     text-align: center;
@@ -47,4 +44,17 @@ li.st-li.first {
     /*display: block;*/
     margin: 10px auto;
     padding-left: 10px;
+}
+.heading {
+    padding: 40px;
+    color: #ffffff;
+}
+.heading a {
+    color: #ffffff;
+    font-size: 15px;
+    border-bottom: 1px solid;
+    cursor: pointer;
+}
+.heading a:hover {
+    text-decoration: none;
 }

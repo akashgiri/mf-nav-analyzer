@@ -4,18 +4,19 @@
 
 {% block head %}
   <link href="{% static 'css/welcome.css' %}" rel="stylesheet">
+  <link href="{% static 'css/show_all_stocks.css' %}" rel="stylesheet">
 {% endblock head %}
 
 {% block body %}
   <div>
     <h1 class="logo">MF NAV Analyzer</h1>
     <div class="heading">
-      <h3>Welcome to Mutual Fund NAV analyzer.<br>
-          As the name suggests, we show the expected change in NAV of a mutual fund for the current day and current time<br>
+      <h2><span class="title">Welcome to Mutual Fund NAV analyzer</span></h2>
+          <h3>As the name suggests, we show the expected change in NAV of a mutual fund for the current day and current time<br>
           based on the stock holdings of the fund. Cash allocation is ignored, assuming it won't amount to much variation in the NAV 
           (this is debatable of course, but we will go ahead with this assumption).
           <br><br>
-          Select a fund name whose change in NAV you want to see.</h3>
+          Select a fund name whose change in NAV you want to see:</h3>
       {% for fund in funds_data.funds_list %}
           <a href="{% url 'funds_info:show_all_stocks' fund.slug %}">{{ fund.fund }}</a><br>
       {% endfor %}

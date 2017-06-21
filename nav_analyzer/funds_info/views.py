@@ -32,14 +32,14 @@ def show_funds_list(request):
 
 ## View to show all stocks held by a fund
 def show_all_stocks(request, page_slug):    
-    print("page_slug: ", page_slug)
+    #print("page_slug: ", page_slug)
     objects = Fund.objects.filter(slug_url=page_slug)
     stocks_list = []
     for obj in objects:
         stock = obj.stock_name
         stocks_list.append(stock)
 
-    print(stocks_list)
+    #print(stocks_list)
 
     context = {
         'fund_data': objects,

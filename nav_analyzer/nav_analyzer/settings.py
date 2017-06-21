@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
+from decouple import Csv, config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,19 +21,39 @@ from unipath import Path
 
 PROJECT_DIR = Path(__file__).parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6q(qff2h9jlkmg)zjbvfyrn58liaxei&vh+z^mqcul0lnf0wt3'
+#SECRET_KEY = '6q(qff2h9jlkmg)zjbvfyrn58liaxei&vh+z^mqcul0lnf0wt3'
+SECRET_KEY = config('SECRET_KEY')
+
+# Database
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_nav_analyzer',
+        'USER': 'u_nav_analyzer',
+        'PASSWORD': 'pass123',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+"""
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,22 +99,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'nav_analyzer.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_nav_analyzer',
-        'USER': 'u_nav_analyzer',
-        'PASSWORD': 'pass123',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -129,11 +135,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 #STATIC_ROOT = PROJECT_DIR.child('staticfiles')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     PROJECT_DIR.child('static'),
 )
+
+"""
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+"""
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 ALLOWED_SIGNUP_DOMAINS = ['*']

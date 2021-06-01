@@ -17,5 +17,5 @@ requests==2.18.1
 six==1.10.0
 static3==0.7.0
 Unipath==1.1
-urllib3==1.21.1
+urllib3==1.26.5
 whitenoise==3.2.2
